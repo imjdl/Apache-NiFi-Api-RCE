@@ -7,12 +7,12 @@ class Exp:
     def __init__(self, url):
         self.url = url
 
-    def check(self):
+    def check_is_vul(self):
         url = self.url + "/nifi-api/access/config"
         try:
             res = req.get(url=url, verify=False)
             data = res.json()
-            return data["config"]["supportsLogin"]
+            return not data["config"]["supportsLogin"]
         except Exception as e:
             pass
         return False
